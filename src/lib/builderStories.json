@@ -9,5 +9,16 @@
     "image": "/images/stories/abayomi.jpg",
     "category": "Alumni Profile",
     "date": "June 8, 2026"
+  },
+  {
+    "id": "story-acad-ai-2025",
+    "title": "From a Final Year Project to an EdTech Enterprise: The Acad AI Story",
+    "founder": "Anjolaoluwa Ajayi",
+    "company": "Acad AI",
+    "excerpt": "What started as a final year undergraduate project has blossomed into a transformative force in education. Acad AI, the brainchild of 2025 Computer Science graduate Anjolaoluwa Ajayi, was born out of a simple desire: to make the academic experience more efficient for both teachers and students.",
+    "content": "What started as a final year undergraduate project has blossomed into a transformative force in education. Acad AI, the brainchild of 2025 Computer Science graduate Anjolaoluwa Ajayi, was born out of a simple desire: to make the academic experience more efficient for both teachers and students.\n\nIn December 2024, Anjolaoluwa and her team took a bold step by pitching their vision at the Babcock Innovation Challenge 3.0. Competing against 30 other student-led ideas, they secured 3rd place and a 500,000 Naira grant. But the true foundation of Acad AI was built on collaboration. The platform was meticulously developed with direct input from Babcock University faculty, including Dr. Akande Oyebola (Anjolaoluwa's supervisor) along with Mr. Joseph Adewuyi, Mr. Amos, Mr. Ukandu, Dr. Eti Chinedu, and Dr. Ajibade.\n\nOn June 20, 2025, Acad AI officially launched. It debuted as a specialized tool for educators to administer and grade exams, with Dr. Ajibade Ayodeji, a distinguished senior finance lecturer, pioneer supporter, and former Head of the Babcock Entrepreneurship Development Centre (BEDC) and Babcock Executive Development Centre (BECD), becoming the platform's very first user.\n\nSince that pivotal debut, Acad AI has scaled into a robust educational ecosystem. What began as an intelligent grading assistant has expanded into an end-to-end enterprise platform trusted by schools and tuition centers, as well as an interactive study and preparation solution for students. Along its journey, the venture has created valuable job opportunities for 14 people, building a driven community committed to educational innovation.\n\nToday, Acad AI stands as a premier example of student-led innovation transitioning into enterprise impact. By bridging the gap between classroom instruction and AI-powered evaluation, the platform continues to streamline academic workflows, eliminate manual administrative burdens, and deliver fast, actionable, and fair feedback across institutions.\n",
+    "image": "/images/stories/acad-ai-team.jpg",
+    "category": "EdTech",
+    "date": "June 20, 2025"
   }
 ]
