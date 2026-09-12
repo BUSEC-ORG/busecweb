@@ -18,7 +18,8 @@ export default function JoinBusec() {
     phone: "",
     interests: "",
     whyJoin: "",
-    ownsBusiness: "No"
+    ownsBusiness: "No",
+    committee: "Secretariat"
   });
 
   const [loading, setLoading] = useState(false);
@@ -47,6 +48,7 @@ export default function JoinBusec() {
             interests: formData.interests,
             why_join: formData.whyJoin,
             owns_business: formData.ownsBusiness,
+            committee: formData.committee,
             payment_reference: ref,
             payment_status: "Paid",
             application_status: "Pending Approval"
@@ -286,15 +288,32 @@ export default function JoinBusec() {
                 </div>
               </div>
 
+              {/* Committee Selection (single choice) */}
+              <div className="space-y-2">
+                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">Preferred Committee</label>
+                <select
+                  required
+                  value={formData.committee}
+                  onChange={(e) => setFormData({ ...formData, committee: e.target.value })}
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 focus:outline-none focus:border-busec-blue transition-all"
+                >
+                  <option value="Secretariat">Secretariat</option>
+                  <option value="Welfare">Welfare</option>
+                  <option value="Public Relations">Public Relations</option>
+                  <option value="Protocol">Protocol</option>
+                  <option value="Finance">Finance</option>
+                  <option value="Chaplaincy">Chaplaincy</option>
+                </select>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <div className="space-y-2 sm:col-span-2">
-                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">Entrepreneurial Interests</label>
+                  <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">Entrepreneurial Interests <span className="normal-case font-normal text-slate-400">(optional)</span></label>
                   <input
                     type="text"
-                    required
                     value={formData.interests}
                     onChange={(e) => setFormData({ ...formData, interests: e.target.value })}
-                    placeholder="e.g. Agritech, fintech, software products..."
+                    placeholder="e.g. Agritech, fintech, software products... (optional)"
                     className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-busec-blue transition-all"
                   />
                 </div>
@@ -353,6 +372,10 @@ export default function JoinBusec() {
                 <div className="flex justify-between">
                   <span>Matric:</span>
                   <span className="font-semibold text-slate-850">{formData.matricNumber}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Committee:</span>
+                  <span className="font-semibold text-slate-850">{formData.committee}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Session:</span>
@@ -414,6 +437,10 @@ export default function JoinBusec() {
                   <span className="font-mono text-slate-800 font-semibold">{txRef}</span>
                 </div>
                 <div className="flex justify-between">
+                  <span>Committee:</span>
+                  <span className="text-slate-800 font-semibold">{formData.committee}</span>
+                </div>
+                <div className="flex justify-between">
                   <span>Dues Status:</span>
                   <span className="text-emerald-655 font-bold">Paid</span>
                 </div>
@@ -460,7 +487,8 @@ export default function JoinBusec() {
                     phone: "",
                     interests: "",
                     whyJoin: "",
-                    ownsBusiness: "No"
+                    ownsBusiness: "No",
+                    committee: "Secretariat"
                   });
                   setStep(1);
                 }}
