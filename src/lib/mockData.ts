@@ -49,7 +49,7 @@ export interface PastExecutive {
 export interface Resource {
   id: string;
   title: string;
-  category: "Startup Guides" | "BIC Pitch Deck Templates" | "Funding" | "Marketing" | "Finance" | "Leadership" | "Innovation" | "Technology" | "Student Businesses";
+  category: "Startup Guides" | "BUSEC Materials" | "Funding" | "Marketing" | "Finance" | "Leadership" | "Innovation" | "Technology" | "Student Businesses";
   description: string;
   downloadUrl: string;
   fileSize: string;
@@ -515,7 +515,8 @@ export const executives24_25: Executive[] = [
 ];
 
 export const resourcesList: Resource[] = [
-  { id: "res-1", title: "BIC 7.0 Pitch Deck Template", category: "BIC Pitch Deck Templates", description: "Fill-in-the-blank slide template for your BIC pitch: problem, solution, market, business model, traction, team, and the ask.", downloadUrl: "/resources/BIC_7.0_Pitch_Deck_Template.pptx", fileSize: "206 KB" },
+  { id: "res-1", title: "BIC 7.0 Pitch Deck Template", category: "BUSEC Materials", description: "Fill-in-the-blank slide template for your BIC pitch: problem, solution, market, business model, traction, team, and the ask.", downloadUrl: "/resources/BIC_7.0_Pitch_Deck_Template.pptx", fileSize: "206 KB" },
+  { id: "res-5", title: "BUSEC Constitution (2026 Amended)", category: "BUSEC Materials", description: "The official governing constitution of the Babcock University Students' Entrepreneurship Club, as amended in 2026.", downloadUrl: "/resources/BUSEC_Constitution_2026.docx", fileSize: "304 KB" },
   { id: "res-2", title: "Babcock Pitch Deck Blueprint", category: "Startup Guides", description: "Learn how to structure your slide deck to pitch to local and institutional angel investors.", downloadUrl: "#", fileSize: "4.5 MB" },
   { id: "res-3", title: "Supabase Integration Guide for Next.js 15", category: "Technology", description: "A technical walkthrough explaining how to setup database triggers, storage buckets, and auth.", downloadUrl: "#", fileSize: "850 KB" },
   { id: "res-4", title: "Campus Marketing & Go-To-Market Playbook", category: "Marketing", description: "Actionable tactics to grow your consumer base at Babcock University without spending capital.", downloadUrl: "#", fileSize: "2.1 MB" }

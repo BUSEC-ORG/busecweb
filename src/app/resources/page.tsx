@@ -13,7 +13,7 @@ export default function Resources() {
   const categories = [
     "All",
     "Startup Guides",
-    "BIC Pitch Deck Templates",
+    "BUSEC Materials",
     "Funding",
     "Marketing",
     "Finance",
