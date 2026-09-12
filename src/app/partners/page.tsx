@@ -248,7 +248,7 @@ export default function Partners() {
               <p className="text-xs text-slate-500 leading-relaxed font-light">
                 Providing financial grants, cash prizes, and capital support for the Babcock Innovation Challenge.
               </p>
-              <span className="text-xs font-semibold text-busec-blue block pt-2">Paystack, Piggyvest, Flutterwave</span>
+              <span className="text-xs font-semibold text-busec-blue block pt-2">Gadget Cartel</span>
             </div>
 
             <div className="p-8 rounded-2xl bg-slate-50 border border-slate-150 card-shadow text-center space-y-3 hover:-translate-y-1 transition-all duration-200">

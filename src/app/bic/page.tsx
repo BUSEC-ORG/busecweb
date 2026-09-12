@@ -45,6 +45,7 @@ export default function BicRegister() {
 
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [showJoinPrompt, setShowJoinPrompt] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [teamRef, setTeamRef] = useState("");
 
@@ -122,6 +123,7 @@ export default function BicRegister() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
+    setShowJoinPrompt(false);
 
     const validationError = validateForm();
     if (validationError) {
@@ -138,6 +140,7 @@ export default function BicRegister() {
           ", "
         )}. All 3 team members must be BUSEC members before registering for BIC.`
       );
+      setShowJoinPrompt(true);
       setLoading(false);
       return;
     }
@@ -273,7 +276,7 @@ export default function BicRegister() {
       <section className="relative pt-36 pb-10 overflow-hidden bg-slate-50 border-b border-slate-100">
         <div className="relative max-w-7xl mx-auto px-6 md:px-8 text-center z-10 space-y-6">
           <h1 className="font-display font-black text-4xl sm:text-5xl md:text-6xl text-busec-navy tracking-tight leading-none max-w-4xl mx-auto">
-            Register for BIC 7.0
+            Register for BIC
           </h1>
           <p className="text-base sm:text-lg text-slate-655 max-w-2xl mx-auto font-light leading-relaxed">
             Teams of 3 registered BUSEC members. Fill in all details below to enter the Babcock Innovation Challenge.
@@ -455,8 +458,16 @@ export default function BicRegister() {
             </div>
 
             {errorMessage && (
-              <div className="text-xs font-semibold text-rose-600 bg-rose-50 p-3 rounded-lg border border-rose-100">
-                {errorMessage}
+              <div className="text-xs font-semibold text-rose-600 bg-rose-50 p-3 rounded-lg border border-rose-100 space-y-3">
+                <p>{errorMessage}</p>
+                {showJoinPrompt && (
+                  <a
+                    href="/join"
+                    className="inline-flex items-center justify-center w-full py-3 bg-busec-navy text-white text-[11px] font-bold uppercase tracking-wider rounded-lg hover:bg-busec-blue transition-all"
+                  >
+                    Join BUSEC Now
+                  </a>
+                )}
               </div>
             )}
 
