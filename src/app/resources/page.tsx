@@ -13,7 +13,7 @@ export default function Resources() {
   const categories = [
     "All",
     "Startup Guides",
-    "Business Templates",
+    "BIC Pitch Deck Templates",
     "Funding",
     "Marketing",
     "Finance",
@@ -65,7 +65,7 @@ export default function Resources() {
         <div className="max-w-7xl mx-auto px-6 md:px-8 space-y-12">
           <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 pb-8 border-b border-slate-100">
             <h2 className="font-display font-bold text-xl text-busec-navy">Startup Toolkit</h2>
-            
+
             {/* Search Input */}
             <div className="relative w-full md:w-80">
               <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -115,10 +115,21 @@ export default function Resources() {
                     </div>
                     <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between">
                       <span className="text-[10px] font-mono text-slate-400">Size: {res.fileSize}</span>
-                      <button className="flex items-center space-x-1.5 text-xs font-bold text-busec-blue hover:underline">
-                        <Download className="w-4 h-4" />
-                        <span>Download</span>
-                      </button>
+                      {res.downloadUrl && res.downloadUrl !== "#" ? (
+                        <a
+                          href={res.downloadUrl}
+                          download
+                          className="flex items-center space-x-1.5 text-xs font-bold text-busec-blue hover:underline"
+                        >
+                          <Download className="w-4 h-4" />
+                          <span>Download</span>
+                        </a>
+                      ) : (
+                        <span className="flex items-center space-x-1.5 text-xs font-bold text-slate-350 cursor-not-allowed">
+                          <Download className="w-4 h-4" />
+                          <span>Coming soon</span>
+                        </span>
+                      )}
                     </div>
                   </div>
                 ))
@@ -252,6 +263,11 @@ export default function Resources() {
                   <h3 className="font-display font-bold text-base text-slate-800">{book.title}</h3>
                   <span className="text-xs text-busec-blue font-semibold mt-0.5 block">By {book.author}</span>
                   <p className="text-xs text-slate-500 mt-4 leading-relaxed font-light">{book.desc}</p>
+                </div>
+                <div className="mt-6 pt-4 border-t border-slate-100">
+                  <span className="text-[10px] font-semibold text-busec-blue uppercase tracking-wider block">
+                    Available in the BUSEC library — ask an exec
+                  </span>
                 </div>
               </div>
             ))}

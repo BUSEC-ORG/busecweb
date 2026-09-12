@@ -49,7 +49,7 @@ export interface PastExecutive {
 export interface Resource {
   id: string;
   title: string;
-  category: "Startup Guides" | "Business Templates" | "Funding" | "Marketing" | "Finance" | "Leadership" | "Innovation" | "Technology" | "Student Businesses";
+  category: "Startup Guides" | "BIC Pitch Deck Templates" | "Funding" | "Marketing" | "Finance" | "Leadership" | "Innovation" | "Technology" | "Student Businesses";
   description: string;
   downloadUrl: string;
   fileSize: string;
@@ -515,7 +515,7 @@ export const executives24_25: Executive[] = [
 ];
 
 export const resourcesList: Resource[] = [
-  { id: "res-1", title: "BUSEC Business Plan Template 2027", category: "Business Templates", description: "Comprehensive, structured financial & operational model tailored for Nigerian campus validation.", downloadUrl: "#", fileSize: "1.2 MB" },
+  { id: "res-1", title: "BIC 7.0 Pitch Deck Template", category: "BIC Pitch Deck Templates", description: "Fill-in-the-blank slide template for your BIC pitch: problem, solution, market, business model, traction, team, and the ask.", downloadUrl: "/resources/BIC_7.0_Pitch_Deck_Template.pptx", fileSize: "206 KB" },
   { id: "res-2", title: "Babcock Pitch Deck Blueprint", category: "Startup Guides", description: "Learn how to structure your slide deck to pitch to local and institutional angel investors.", downloadUrl: "#", fileSize: "4.5 MB" },
   { id: "res-3", title: "Supabase Integration Guide for Next.js 15", category: "Technology", description: "A technical walkthrough explaining how to setup database triggers, storage buckets, and auth.", downloadUrl: "#", fileSize: "850 KB" },
   { id: "res-4", title: "Campus Marketing & Go-To-Market Playbook", category: "Marketing", description: "Actionable tactics to grow your consumer base at Babcock University without spending capital.", downloadUrl: "#", fileSize: "2.1 MB" }
