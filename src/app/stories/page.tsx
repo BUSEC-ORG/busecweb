@@ -1,36 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { builderStories, BuilderStory } from "@/lib/mockData";
+import { builderStories } from "@/lib/mockData";
 import { ArrowRight, ArrowDown, Calendar, Tag, FileText } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function BuilderStories() {
-  const [stories, setStories] = useState<BuilderStory[]>([]);
-
-  useEffect(() => {
-    const storedStories = localStorage.getItem("busec_builder_stories_v2");
-    if (storedStories) {
-      const parsed = JSON.parse(storedStories);
-      setStories(parsed);
-      // Auto sync to backend if localStorage differs from the file
-      if (JSON.stringify(parsed) !== JSON.stringify(builderStories)) {
-        fetch("/api/stories/save", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ stories: parsed })
-        }).catch(err => console.error("Sync error:", err));
-      }
-    } else {
-      setStories(builderStories);
-      if (builderStories.length > 0) {
-        localStorage.setItem("busec_builder_stories_v2", JSON.stringify(builderStories));
-      }
-    }
-  }, []);
+  const stories = builderStories;
 
   const scrollToStory = (id: string) => {
     const el = document.getElementById(id);
