@@ -8,6 +8,15 @@ import { supabase } from "@/lib/supabase";
 import { CreditCard, CheckCircle2, ShieldCheck, ArrowRight, Loader2 } from "lucide-react";
 
 export default function JoinBusec() {
+  const committeeWhatsAppLinks: Record<string, string> = {
+    "Secretariat": "https://chat.whatsapp.com/Lr34X7kNCTI2nUnmxTdsJ0?s=sh&p=i&mlu=4&ilr=4",
+    "Welfare": "https://chat.whatsapp.com/JL62J0oo4RaLQhTLTIK05t?s=sw&p=a&ilr=0",
+    "Public Relations": "https://chat.whatsapp.com/F2gE7SJcb4w7SUtSR4OKgo?s=cl&p=i&mlu=4&ilr=4",
+    "Protocol": "https://chat.whatsapp.com/EiWP2w23lOK9ovDkwnsAdB?s=sw&p=a&ilr=0&amv=3",
+    "Finance": "https://chat.whatsapp.com/HcAdbzjpAW3HhskndXLnnR?s=cl&p=i&mlu=4&ilr=4",
+    "Chaplaincy": "https://chat.whatsapp.com/H7Ax9dbpye7AQL2o9Kz8aI?s=cl&p=i&mlu=4&ilr=4"
+  };
+
   const [step, setStep] = useState(1); // 1: Form, 2: Payment Simulation, 3: Success
   const [formData, setFormData] = useState({
     fullName: "",
@@ -67,7 +76,7 @@ export default function JoinBusec() {
     // Local Storage Cache Fallback
     const existingAppsJson = localStorage.getItem("busec_membership_applications");
     const existingApps = existingAppsJson ? JSON.parse(existingAppsJson) : [];
-    
+
     const newApplication = {
       id: "APP-" + Date.now(),
       ...formData,
@@ -76,7 +85,7 @@ export default function JoinBusec() {
       status: "Pending Approval",
       date: new Date().toLocaleDateString()
     };
-    
+
     existingApps.unshift(newApplication);
     localStorage.setItem("busec_membership_applications", JSON.stringify(existingApps));
   };
@@ -130,7 +139,7 @@ export default function JoinBusec() {
 
     if (!publicKey || publicKey === "pk_test_placeholder_key_here") {
       console.warn("NEXT_PUBLIC_PAYSTACK_PUBLIC_KEY is not configured. Falling back to test simulation mode.");
-      
+
       const ref = "TEST-SIM-" + Math.random().toString(36).substring(2, 11).toUpperCase();
       setTimeout(() => {
         saveApplicationToStorage(ref);
@@ -186,7 +195,7 @@ export default function JoinBusec() {
       {/* Membership Flow Panel */}
       <section className="pt-10 pb-20 bg-white">
         <div className="max-w-3xl mx-auto px-6">
-          
+
           {/* Progress Indicators */}
           <div className="flex items-center justify-between mb-12 max-w-md mx-auto">
             <div className="flex flex-col items-center space-y-2">
@@ -425,7 +434,7 @@ export default function JoinBusec() {
               <div className="w-16 h-16 rounded-full bg-busec-blue/10 border border-busec-blue/20 flex items-center justify-center text-busec-blue mx-auto">
                 <CheckCircle2 className="w-7 h-7" />
               </div>
-              
+
               <div className="space-y-2">
                 <h3 className="font-display font-bold text-xl text-slate-800">Application Completed</h3>
                 <p className="text-xs text-slate-500 font-light">Your membership registration has been recorded successfully.</p>
@@ -464,7 +473,7 @@ export default function JoinBusec() {
                   <p className="text-[11px] text-slate-600 font-light leading-normal">Connect with fellow student innovators, developers, and founders in our WhatsApp group.</p>
                 </div>
                 <a
-                  href="https://chat.whatsapp.com/IVrm4FG0iPmIozJokqwlNA"
+                  href="https://chat.whatsapp.com/HyTYyttfSLQ1PBgSMFbPyU?s=cl&p=i&mlu=4&ilr=4"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center space-x-2 px-6 py-3 w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md shadow-emerald-600/10 active:scale-[0.98]"
@@ -475,6 +484,31 @@ export default function JoinBusec() {
                   <span>Join WhatsApp Group</span>
                 </a>
               </div>
+
+              {/* Committee-specific WhatsApp Group */}
+              {committeeWhatsAppLinks[formData.committee] && (
+                <div className="p-4 rounded-2xl bg-busec-blue/5 border border-busec-blue/20 flex flex-col items-center text-center space-y-3.5 shadow-sm">
+                  <div className="space-y-1">
+                    <span className="text-xs font-black text-busec-navy uppercase tracking-wider block">
+                      Join Your {formData.committee} Committee
+                    </span>
+                    <p className="text-[11px] text-slate-600 font-light leading-normal">
+                      Connect directly with your committee members and executives.
+                    </p>
+                  </div>
+                  <a
+                    href={committeeWhatsAppLinks[formData.committee]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center space-x-2 px-6 py-3 w-full bg-busec-navy hover:bg-busec-blue text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md active:scale-[0.98]"
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.417 9.864-9.848.002-2.63-1.018-5.101-2.872-6.957C16.59 1.944 14.116.924 11.493.924c-5.438 0-9.862 4.416-9.866 9.847-.002 1.82.488 3.593 1.42 5.176l-.99 3.616 3.7.969-1.11-.648z" />
+                    </svg>
+                    <span>Join {formData.committee} Group</span>
+                  </a>
+                </div>
+              )}
 
               <button
                 onClick={() => {
