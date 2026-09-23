@@ -6,8 +6,7 @@ import Footer from "@/components/Footer";
 import { supabase } from "@/lib/supabase";
 import { CheckCircle2, Loader2, Users } from "lucide-react";
 
-// TODO: Replace with your actual BIC WhatsApp group invite link
-const BIC_WHATSAPP_LINK = "https://chat.whatsapp.com/REPLACE_WITH_YOUR_BIC_GROUP_LINK";
+const BIC_WHATSAPP_LINK = "https://chat.whatsapp.com/EW3ul7z7os4I577Rds2X9l";
 
 type Member = {
   fullName: string;
