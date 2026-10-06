@@ -9,7 +9,7 @@ import { CreditCard, CheckCircle2, ShieldCheck, ArrowRight, Loader2 } from "luci
 
 export default function JoinBusec() {
   const committeeWhatsAppLinks: Record<string, string> = {
-    "Secretariat": "https://chat.whatsapp.com/Lr34X7kNCTI2nUnmxTdsJ0?s=sh&p=i&mlu=4&ilr=4",
+    "Secretariat": "https://chat.whatsapp.com/B7dV3iWfB7CJ6ebfP902B0?mode=gi_t",
     "Welfare": "https://chat.whatsapp.com/JL62J0oo4RaLQhTLTIK05t?s=sw&p=a&ilr=0",
     "Public Relations": "https://chat.whatsapp.com/F2gE7SJcb4w7SUtSR4OKgo?s=cl&p=i&mlu=4&ilr=4",
     "Protocol": "https://chat.whatsapp.com/EiWP2w23lOK9ovDkwnsAdB?s=sw&p=a&ilr=0&amv=3",
