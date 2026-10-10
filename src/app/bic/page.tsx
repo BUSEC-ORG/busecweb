@@ -85,32 +85,42 @@ export default function BicRegister() {
     return "";
   };
 
+  // Keeps only letters and digits, uppercased, so "24/1801", "24-1801",
+  // "24 1801 " and "24/1801" with hidden characters all become "241801"
+  const normalizeMatric = (s: string) => (s || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+
   const checkMembership = async (): Promise<string[]> => {
     // Returns list of matric numbers NOT found as paid BUSEC members
     if (!supabase) return []; // if supabase isn't configured, skip check (dev fallback)
 
-    const matricNumbers = members.map((m) => m.matricNumber.trim());
+    const typed = members.map((m) => ({
+      raw: m.matricNumber.trim(),
+      key: normalizeMatric(m.matricNumber)
+    }));
     const notFound: string[] = [];
 
     try {
+      // Fetch candidate rows by the last 4 characters, then compare properly in code
+      const orFilter = typed.map((t) => `matric_number.ilike.*${t.key.slice(-4)}*`).join(",");
+
       const { data, error } = await supabase
         .from("membership_applications")
         .select("matric_number, payment_status")
-        .in("matric_number", matricNumbers);
+        .or(orFilter);
 
       if (error) {
         console.error("Membership check error:", error);
         return []; // don't block submission on a check failure
       }
 
-      const paidMatrics = new Set(
+      const paidKeys = new Set(
         (data || [])
-          .filter((row: any) => row.payment_status === "Paid")
-          .map((row: any) => row.matric_number)
+          .filter((row: any) => String(row.payment_status || "").trim().toLowerCase() === "paid")
+          .map((row: any) => normalizeMatric(row.matric_number))
       );
 
-      matricNumbers.forEach((mn) => {
-        if (!paidMatrics.has(mn)) notFound.push(mn);
+      typed.forEach((t) => {
+        if (!paidKeys.has(t.key)) notFound.push(t.raw);
       });
     } catch (err) {
       console.error("Membership check failed:", err);
