@@ -44,7 +44,6 @@ export default function BicRegister() {
 
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [showJoinPrompt, setShowJoinPrompt] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [teamRef, setTeamRef] = useState("");
 
@@ -85,54 +84,9 @@ export default function BicRegister() {
     return "";
   };
 
-  // Keeps only letters and digits, uppercased, so "24/1801", "24-1801",
-  // "24 1801 " and "24/1801" with hidden characters all become "241801"
-  const normalizeMatric = (s: string) => (s || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
-
-  const checkMembership = async (): Promise<string[]> => {
-    // Returns list of matric numbers NOT found as paid BUSEC members
-    if (!supabase) return []; // if supabase isn't configured, skip check (dev fallback)
-
-    const typed = members.map((m) => ({
-      raw: m.matricNumber.trim(),
-      key: normalizeMatric(m.matricNumber)
-    }));
-    const notFound: string[] = [];
-
-    try {
-      // Fetch candidate rows by the last 4 characters, then compare properly in code
-      const orFilter = typed.map((t) => `matric_number.ilike.*${t.key.slice(-4)}*`).join(",");
-
-      const { data, error } = await supabase
-        .from("membership_applications")
-        .select("matric_number, payment_status")
-        .or(orFilter);
-
-      if (error) {
-        console.error("Membership check error:", error);
-        return []; // don't block submission on a check failure
-      }
-
-      const paidKeys = new Set(
-        (data || [])
-          .filter((row: any) => String(row.payment_status || "").trim().toLowerCase() === "paid")
-          .map((row: any) => normalizeMatric(row.matric_number))
-      );
-
-      typed.forEach((t) => {
-        if (!paidKeys.has(t.key)) notFound.push(t.raw);
-      });
-    } catch (err) {
-      console.error("Membership check failed:", err);
-    }
-
-    return notFound;
-  };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMessage("");
-    setShowJoinPrompt(false);
 
     const validationError = validateForm();
     if (validationError) {
@@ -141,18 +95,6 @@ export default function BicRegister() {
     }
 
     setLoading(true);
-
-    const notFoundMatrics = await checkMembership();
-    if (notFoundMatrics.length > 0) {
-      setErrorMessage(
-        `The following matric number(s) are not registered as paid BUSEC members: ${notFoundMatrics.join(
-          ", "
-        )}. All 3 team members must be BUSEC members before registering for BIC.`
-      );
-      setShowJoinPrompt(true);
-      setLoading(false);
-      return;
-    }
 
     const ref = "BIC-" + Date.now();
 
@@ -467,16 +409,8 @@ export default function BicRegister() {
             </div>
 
             {errorMessage && (
-              <div className="text-xs font-semibold text-rose-600 bg-rose-50 p-3 rounded-lg border border-rose-100 space-y-3">
-                <p>{errorMessage}</p>
-                {showJoinPrompt && (
-                  <a
-                    href="/join"
-                    className="inline-flex items-center justify-center w-full py-3 bg-busec-navy text-white text-[11px] font-bold uppercase tracking-wider rounded-lg hover:bg-busec-blue transition-all"
-                  >
-                    Join BUSEC Now
-                  </a>
-                )}
+              <div className="text-xs font-semibold text-rose-600 bg-rose-50 p-3 rounded-lg border border-rose-100">
+                {errorMessage}
               </div>
             )}
 
